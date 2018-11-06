@@ -1,0 +1,77 @@
+/*SELECT STR_TO_DATE('2013-02-11', '%Y-%m-%d');*/
+
+ 
+alter table cryptos modify column circulating_supply bigint;
+
+alter table cryptos modify column market_cap bigint;
+alter table prices modify column current_USD decimal(8,2);
+
+
+alter table prices modify column current_BTC float;
+ 
+
+ 
+
+insert into users values ('perrymanD',576329);
+insert into users values ('jacobsW',8765309);
+insert into users values ('bairdA',581758);
+
+ 
+
+insert into platforms values ('Ethereum',1114);
+insert into platforms values ('Waves',21);
+insert into platforms values ('Stellar',20);
+insert into platforms values ('Bitcoin',13);
+insert into platforms values ('Eos',11);
+
+ 
+
+
+insert into cryptos values('Bitcoin',str_to_date('2008-01-08','%Y-%m-%d'),'Bitcoin',17361312,111222160901);
+
+
+insert into cryptos values('Ethereum',str_to_date('2015-08-15','%Y-%m-%d'),'Ethereum',103017688,21336076492);
+
+
+insert into cryptos values('XRP',str_to_date('2016-11-05','%Y-%m-%d'),'Ethereum',19350270508,40205513967);
+
+
+insert into cryptos values('EOS',str_to_date('2017-10-30','%Y-%m-%d'),'Eos',906245118,4906186530);
+
+
+insert into cryptos values('Stellar',str_to_date('2018-02-01','%Y-%m-%d'),'Waves',18921749226,4589508066);
+
+ 
+
+ 
+
+insert into user_wallet values('perrymanD','Bitcoin',10,str_to_Date('2015-08-17','%Y-%m-%d'));
+
+
+insert into user_wallet values('perrymanD','Ethereum',5,str_to_Date('2017-10-11','%Y-%m-%d'));
+
+
+insert into user_wallet values('perrymanD','EOS',10,str_to_Date('2018-01-28','%Y-%m-%d'));
+
+
+insert into user_wallet values('jacobsW','Bitcoin',1,str_to_Date('2018-05-11','%Y-%m-%d'));
+
+
+insert into user_wallet values('jacobsW','XRP',8,str_to_Date('2018-02-05','%Y-%m-%d'));
+
+
+insert into user_wallet values('bairdA','Ethereum',50,str_to_Date('2017-05-05','%Y-%m-%d'));
+
+
+insert into user_wallet values('bairdA','Stellar',500,str_to_Date('2018-03-30','%Y-%m-%d'));
+
+ 
+
+/*create a trigger that on insert, divides USD_Price / BTC_Price */
+insert into prices values ('Bitcoin',6406.31,1);
+insert into prices values ('Ethereum',207.11,0.032329);
+insert into prices values ('XRP',.48,0.000074);
+insert into prices values ('EOS',5.41,0.000844);
+insert into prices values ('Stellar',.24,0.000037);
+
+
