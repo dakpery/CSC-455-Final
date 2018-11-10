@@ -1,17 +1,4 @@
-/*SELECT STR_TO_DATE('2013-02-11', '%Y-%m-%d');*/
-
  
-alter table cryptos modify column circulating_supply bigint;
-
-alter table cryptos modify column market_cap bigint;
-alter table prices modify column current_USD decimal(8,2);
-
-
-alter table prices modify column current_BTC float;
- 
-
- 
-
 insert into users values ('perrymanD',576329);
 insert into users values ('jacobsW',8765309);
 insert into users values ('bairdA',581758);
@@ -68,10 +55,13 @@ insert into user_wallet values('bairdA','Stellar',500,str_to_Date('2018-03-30','
  
 
 /*create a trigger that on insert, divides USD_Price / BTC_Price */
-insert into prices values ('Bitcoin',6406.31,1);
-insert into prices values ('Ethereum',207.11,0.032329);
-insert into prices values ('XRP',.48,0.000074);
-insert into prices values ('EOS',5.41,0.000844);
-insert into prices values ('Stellar',.24,0.000037);
+insert into prices values ('Bitcoin',6406.31);
+insert into prices values ('Ethereum',207.11);
+insert into prices values ('XRP',.48);
+insert into prices values ('EOS',5.41);
+insert into prices values ('Stellar',.24);
 
 
+
+select * from prices;
+select * from prices_aftertrigger;

@@ -18,44 +18,17 @@ namespace DatabaseProject
             InitializeComponent();
         }
 
-        public void readDatabase()
-        {
-            string queryStr = "Select * FROM course_table;";
-
-
-            string ConnectionStr = "server=localhost; uid=root; pwd=Deepw00d; database=Courses";
-            using (MySqlConnection connection = new MySqlConnection(ConnectionStr))
-            {
-                MySqlCommand command = new MySqlCommand(queryStr, connection);
-                connection.Open();
-                try
-                {
-                    MySqlDataReader reader = command.ExecuteReader();
-
-
-
-
-                } finally
-                {
-                    connection.Close();
-                }
-            }
-
-
-
-
-
-        }
-
         private void createUserBtn_Click(object sender, EventArgs e)
         {
             CreateUser newUser = new CreateUser();
+            this.Hide();
             newUser.Show();
         }
 
         private void signInBtn_Click(object sender, EventArgs e)
         {
             Login login = new Login();
+            this.Hide();
             login.Show();
         }
     }

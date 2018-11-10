@@ -35,6 +35,9 @@
             this.CreateUserBtn = new System.Windows.Forms.Button();
             this.BackBtn = new System.Windows.Forms.Button();
             this.ErrorLabel = new System.Windows.Forms.Label();
+            this.UserViewBtn = new System.Windows.Forms.Button();
+            this.userGrid = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.userGrid)).BeginInit();
             this.SuspendLayout();
             // 
             // label2
@@ -74,7 +77,7 @@
             // CreateUserBtn
             // 
             this.CreateUserBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CreateUserBtn.Location = new System.Drawing.Point(453, 302);
+            this.CreateUserBtn.Location = new System.Drawing.Point(59, 302);
             this.CreateUserBtn.Name = "CreateUserBtn";
             this.CreateUserBtn.Size = new System.Drawing.Size(208, 63);
             this.CreateUserBtn.TabIndex = 4;
@@ -85,7 +88,7 @@
             // BackBtn
             // 
             this.BackBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BackBtn.Location = new System.Drawing.Point(716, 302);
+            this.BackBtn.Location = new System.Drawing.Point(364, 302);
             this.BackBtn.Name = "BackBtn";
             this.BackBtn.Size = new System.Drawing.Size(208, 63);
             this.BackBtn.TabIndex = 5;
@@ -101,9 +104,31 @@
             this.ErrorLabel.Size = new System.Drawing.Size(0, 17);
             this.ErrorLabel.TabIndex = 6;
             // 
+            // UserViewBtn
+            // 
+            this.UserViewBtn.Location = new System.Drawing.Point(844, 476);
+            this.UserViewBtn.Name = "UserViewBtn";
+            this.UserViewBtn.Size = new System.Drawing.Size(246, 23);
+            this.UserViewBtn.TabIndex = 7;
+            this.UserViewBtn.Text = "See all usernames in use";
+            this.UserViewBtn.UseVisualStyleBackColor = true;
+            this.UserViewBtn.Click += new System.EventHandler(this.UserViewBtn_Click);
+            // 
+            // userGrid
+            // 
+            this.userGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.userGrid.Location = new System.Drawing.Point(768, 122);
+            this.userGrid.Name = "userGrid";
+            this.userGrid.ReadOnly = true;
+            this.userGrid.RowTemplate.Height = 24;
+            this.userGrid.Size = new System.Drawing.Size(157, 153);
+            this.userGrid.TabIndex = 8;
+            // 
             // CreateUser
             // 
-            this.ClientSize = new System.Drawing.Size(1088, 500);
+            this.ClientSize = new System.Drawing.Size(1182, 553);
+            this.Controls.Add(this.userGrid);
+            this.Controls.Add(this.UserViewBtn);
             this.Controls.Add(this.ErrorLabel);
             this.Controls.Add(this.BackBtn);
             this.Controls.Add(this.CreateUserBtn);
@@ -112,6 +137,7 @@
             this.Controls.Add(this.PasswordTxt);
             this.Controls.Add(this.label2);
             this.Name = "CreateUser";
+            ((System.ComponentModel.ISupportInitialize)(this.userGrid)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -127,5 +153,7 @@
         private System.Windows.Forms.Button CreateUserBtn;
         private System.Windows.Forms.Button BackBtn;
         private System.Windows.Forms.Label ErrorLabel;
+        private System.Windows.Forms.Button UserViewBtn;
+        private System.Windows.Forms.DataGridView userGrid;
     }
 }

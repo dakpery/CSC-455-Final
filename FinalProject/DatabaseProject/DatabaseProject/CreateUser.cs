@@ -14,6 +14,8 @@ namespace DatabaseProject
 {
     public partial class CreateUser : Form
     {
+        public string ConnectionStr = "server=localhost; uid=root; pwd=Deepw00d; database=crypto";
+
         public CreateUser()
         {
             InitializeComponent();
@@ -30,6 +32,7 @@ namespace DatabaseProject
             string password = PasswordTxt.Text;
             string userPattern = @"^[a-zA-Z][a-zA-Z0-9]{4,16}$";
             string queryStr = "Insert into users values (@Username,@Password);";
+            string selectQry = "Select count(*) from users where user_id = @Username;";
 
             Match m = Regex.Match(UserTxt.Text, userPattern);
             if(!m.Success)
@@ -47,36 +50,74 @@ namespace DatabaseProject
 
             ErrorLabel.Text = "";
 
-            string ConnectionStr = "server=localhost; uid=root; pwd=whatever your password is ; database=crypto";
             using (MySqlConnection connection = new MySqlConnection(ConnectionStr))
             {
-                MySqlCommand command = new MySqlCommand(queryStr, connection);
+                MySqlCommand selectCommand = new MySqlCommand(selectQry, connection);
+
+                MySqlCommand insertCommand = new MySqlCommand(queryStr, connection);
 
                 connection.Open();
 
-                command.Parameters.AddWithValue("@Username", username);
-                command.Parameters.AddWithValue("@Password", password);
-                try
+                selectCommand.Parameters.AddWithValue("@Username", username);
+                insertCommand.Parameters.AddWithValue("@Username", username);
+                insertCommand.Parameters.AddWithValue("@Password", password);
+
+                int count = Convert.ToInt32(selectCommand.ExecuteScalar());
+
+                if (count == 0)
                 {
-                    int inserted = command.ExecuteNonQuery();
+                    int inserted = insertCommand.ExecuteNonQuery();
                     if (inserted == 0)
                     {
                         ErrorLabel.Text = "We could not process your request";
-                    } else
+                    }
+                    else
                     {
                         ErrorLabel.Text = "We have created a user account for you. Please go back and log in";
                     }
                 }
-                finally
+                else
                 {
-                    connection.Close();
+                    ErrorLabel.Text = "The username you are attempting to insert is already in use. Please select see users to see usernames";
                 }
+                connection.Close();
             }
         }
 
         private void BackBtn_Click(object sender, EventArgs e)
         {
+            Form1 f1 = new Form1();
             this.Hide();
+            f1.Show();            
+        }
+
+        private void UserViewBtn_Click(object sender, EventArgs e)
+        {
+            userGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            userGrid.AutoGenerateColumns = false;
+
+            string selectViewQuery = "select * from user_view; ";
+            DataTable dt = new DataTable();
+
+            using (MySqlConnection connection = new MySqlConnection(ConnectionStr))
+            {
+                MySqlCommand selectCommand = new MySqlCommand(selectViewQuery, connection);
+                MySqlCommand insertCommand = new MySqlCommand(selectViewQuery, connection);
+                connection.Open();
+                dt.Load(selectCommand.ExecuteReader());
+
+                foreach (DataColumn dc in dt.Columns)
+                {
+                    userGrid.Columns.Add(new DataGridViewTextBoxColumn());
+                    userGrid.Columns[0].HeaderText = "Users";
+                }
+
+                foreach (DataRow row in dt.Rows)
+                {
+                    userGrid.Rows.Add(row.ItemArray);
+                }
+                connection.Close();
+            }
         }
     }
 }

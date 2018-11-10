@@ -4,6 +4,8 @@ drop table if exists cryptos;
 drop table if exists user_wallet;
 drop table if exists prices;
 drop table if exists crypto_stats;
+drop table if exists prices_aftertrigger;
+drop trigger if exists new_price;
 
 create table users (
 		user_id varchar(45),
@@ -25,8 +27,8 @@ create table cryptos (
 		crypto_name varchar(100),
 		date_release DATE,
 		blockchain_platform varchar(100),
-        circulating_supply int,
-		market_cap int,
+        circulating_supply bigint,
+		market_cap bigint,
 		primary key (crypto_name),
 		foreign key (blockchain_platform) references platforms(blockchain_platform)
     );
@@ -39,8 +41,8 @@ create table user_wallet (
 		balance decimal(25),
 		date_bought date,
 		primary key (user_id,crypto_name),
-		foreign key (user_id) references users(user_id),
-		foreign key (crypto_name) references cryptos(crypto_name)
+		foreign key (user_id) references users(user_id) on delete cascade,
+		foreign key (crypto_name) references cryptos(crypto_name) on delete cascade
 	);
 
                
@@ -48,15 +50,29 @@ create table user_wallet (
 
 create table prices (
 		crypto_name varchar(100),
-		current_USD decimal(25),
-		current_BTC decimal(25),
+		current_USD decimal(10,6),
 		primary key (crypto_name),
-		foreign key (crypto_name) references cryptos(crypto_name)
+		foreign key (crypto_name) references cryptos(crypto_name) on delete cascade
 	);      
 
 
 
-               
+create table prices_afterTrigger(
+	crypto_name varchar(100),
+    current_USD decimal(10,6),
+    current_BTC_Rate decimal(10,6),
+	foreign key (crypto_name) references prices(crypto_name) on delete cascade
+);
 
 
+CREATE TRIGGER new_price 
+AFTER INSERT ON prices
+FOR EACH ROW 
+  INSERT INTO prices_aftertrigger (crypto_name, current_USD, current_BTC_Rate)
+  VALUES (NEW.crypto_name, NEW.current_USD, current_USD/6416.16);
+  
+  
+  
 
+  
+  
