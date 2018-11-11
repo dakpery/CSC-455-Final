@@ -53,6 +53,7 @@ namespace DatabaseProject
                     {
                         errorLabel.Text = "Success";
                         UserWallet uw = new UserWallet();
+                        uw.setUserID(userName);
                         this.Hide();
                         uw.Show();
 
@@ -95,5 +96,12 @@ namespace DatabaseProject
             return true;
         }
 
+        private void password_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar==(char)13)
+            {
+                signInBtn.PerformClick();
+            }
+        }
     }
 }

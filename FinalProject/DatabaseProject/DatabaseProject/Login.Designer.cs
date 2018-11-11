@@ -92,6 +92,7 @@
             this.passwordTxt.Name = "passwordTxt";
             this.passwordTxt.Size = new System.Drawing.Size(167, 30);
             this.passwordTxt.TabIndex = 2;
+            this.passwordTxt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.password_KeyPress);
             // 
             // errorLabel
             // 

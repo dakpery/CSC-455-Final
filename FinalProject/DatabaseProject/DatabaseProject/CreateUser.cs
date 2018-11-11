@@ -102,7 +102,6 @@ namespace DatabaseProject
             using (MySqlConnection connection = new MySqlConnection(ConnectionStr))
             {
                 MySqlCommand selectCommand = new MySqlCommand(selectViewQuery, connection);
-                MySqlCommand insertCommand = new MySqlCommand(selectViewQuery, connection);
                 connection.Open();
                 dt.Load(selectCommand.ExecuteReader());
 

@@ -1,7 +1,7 @@
  
-insert into users values ('perrymanD',576329);
-insert into users values ('jacobsW',8765309);
-insert into users values ('bairdA',581758);
+insert into users values ('perrymanD',TestPassword);
+insert into users values ('jacobsW',TestPassword);
+insert into users values ('bairdA',TestPassword);
 
  
 
