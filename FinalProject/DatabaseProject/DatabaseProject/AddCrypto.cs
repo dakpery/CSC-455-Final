@@ -60,7 +60,7 @@ namespace DatabaseProject
         }
 
         private void updateBtn_Click(object sender, EventArgs e)
-        {
+        { 
             int myInt = Convert.ToInt32(numBox.Value);
             if (myInt < 0)
             {
@@ -98,7 +98,26 @@ namespace DatabaseProject
 
                 if (count == 0)
                 {
-                    errorLabel.Text = "Something went wrong.";
+                    query = $"insert into user_wallet values(@Username,@CryptoName,{numBox.Value},str_to_Date('2018-11-11','%Y-%m-%d'));";
+
+                    //insert into user_wallet values('perrymanD','Bitcoin',10,str_to_Date('2015-08-17','%Y-%m-%d'));
+
+                    MySqlCommand insertValue = new MySqlCommand(query, connection);
+                    insertValue.Parameters.AddWithValue("@Username", user_id);
+                    insertValue.Parameters.AddWithValue("@CryptoName", selected);
+
+
+                    int newCount = Convert.ToInt32(insertValue.ExecuteNonQuery());
+
+                    if(newCount == 0)
+                    {
+                        errorLabel.Text = "Something went wrong";
+                    }
+                    else
+                    {
+                        errorLabel.Text = "Success";
+                    }
+
                 }
                 else
                 {
@@ -107,12 +126,6 @@ namespace DatabaseProject
                 }
                 connection.Close();
             }
-
-
-
-
-
-
         }
 
         public void setUserName(string userName)

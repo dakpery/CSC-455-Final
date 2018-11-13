@@ -30,6 +30,7 @@
         {
             this.createUserBtn = new System.Windows.Forms.Button();
             this.signInBtn = new System.Windows.Forms.Button();
+            this.cryptoBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // createUserBtn
@@ -52,11 +53,22 @@
             this.signInBtn.UseVisualStyleBackColor = true;
             this.signInBtn.Click += new System.EventHandler(this.signInBtn_Click);
             // 
+            // cryptoBtn
+            // 
+            this.cryptoBtn.Location = new System.Drawing.Point(595, 325);
+            this.cryptoBtn.Name = "cryptoBtn";
+            this.cryptoBtn.Size = new System.Drawing.Size(193, 113);
+            this.cryptoBtn.TabIndex = 2;
+            this.cryptoBtn.Text = "View Crypto Stats";
+            this.cryptoBtn.UseVisualStyleBackColor = true;
+            this.cryptoBtn.Click += new System.EventHandler(this.cryptoBtn_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.cryptoBtn);
             this.Controls.Add(this.signInBtn);
             this.Controls.Add(this.createUserBtn);
             this.Name = "Form1";
@@ -69,6 +81,7 @@
 
         private System.Windows.Forms.Button createUserBtn;
         private System.Windows.Forms.Button signInBtn;
+        private System.Windows.Forms.Button cryptoBtn;
     }
 }
 

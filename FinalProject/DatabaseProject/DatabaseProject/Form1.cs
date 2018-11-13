@@ -31,5 +31,12 @@ namespace DatabaseProject
             this.Hide();
             login.Show();
         }
+
+        private void cryptoBtn_Click(object sender, EventArgs e)
+        {
+            DisplayCrypto dp = new DisplayCrypto();
+            this.Hide();
+            dp.Show();
+        }
     }
 }
