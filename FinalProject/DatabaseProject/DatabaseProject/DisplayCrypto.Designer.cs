@@ -80,10 +80,11 @@
             // errorLabel
             // 
             this.errorLabel.AutoSize = true;
-            this.errorLabel.Location = new System.Drawing.Point(481, 500);
+            this.errorLabel.Location = new System.Drawing.Point(248, 510);
             this.errorLabel.Name = "errorLabel";
-            this.errorLabel.Size = new System.Drawing.Size(0, 17);
+            this.errorLabel.Size = new System.Drawing.Size(74, 17);
             this.errorLabel.TabIndex = 4;
+            this.errorLabel.Text = "errorLabel";
             // 
             // avgSupplyBtn
             // 

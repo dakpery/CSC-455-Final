@@ -203,7 +203,6 @@ namespace DatabaseProject
                 dt.Load(selectCommand.ExecuteReader());
 
 
-
                 if (dt.Rows.Count == 0)
                 {
                     errorLabel.Text = "something went wrong";
